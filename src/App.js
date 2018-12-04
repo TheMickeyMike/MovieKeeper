@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Navbar from './components/Navbar'
+import Header from './components/Header'
 import Home from './components/Home'
 import { Container } from 'semantic-ui-react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import MovieDetail from './components/MovieDetail';
+import MovieShow from './components/movies/MovieShow';
 
 class App extends Component {
   render() {
@@ -11,10 +11,10 @@ class App extends Component {
       <Container>
         <BrowserRouter>
           <React.Fragment>
-            <Navbar />
+            <Header />
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/movies/:id" exact component={MovieDetail} />
+              <Route path="/movies/:id" exact component={MovieShow} />
             </Switch>
           </React.Fragment>
         </BrowserRouter>

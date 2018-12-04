@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 
-class Navbar extends Component {
+class Header extends Component {
     render() {
         return (
             <Menu stackable >
@@ -16,4 +16,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default Header;

@@ -1,8 +1,8 @@
 import React from 'react';
-import MovieCard from './MovieCard';
+import MovieItem from './MovieItem';
 import { Item } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { fetchMovies } from '../actions';
+import { fetchMovies } from '../../actions';
 
 class MovieList extends React.Component {
     componentDidMount() {
@@ -11,7 +11,7 @@ class MovieList extends React.Component {
 
     renderList() {
         return this.props.movies.map(movie => {
-            return <MovieCard key={movie.id} movie={movie} />;
+            return <MovieItem key={movie.id} movie={movie} />;
         });
     }
 

@@ -3,7 +3,7 @@ import plLocale from 'moment/locale/pl'
 import { Link } from 'react-router-dom';
 import { Item, Label, Progress, Segment, Grid, Image, Header, Icon } from 'semantic-ui-react'
 import moment from "moment";
-import { ProgressCalculator, Duration } from '../utils/calcualtor'
+import { ProgressCalculator, Duration } from '../../utils/calcualtor'
 moment.locale('pl', plLocale);
 
 const MovieCard = props => {
@@ -40,7 +40,7 @@ const MovieCard = props => {
     }
     return (
         < Item >
-            <Item.Image>
+            <Item.Image >
                 <Image src={image} release_date_digital disabled={disabled} />
             </Item.Image>
             <Item.Content>

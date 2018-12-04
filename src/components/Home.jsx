@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieList from './MovieList'
+import MovieList from './movies/MovieList'
 import { Input, Segment } from 'semantic-ui-react'
 
 const Home = props => {
