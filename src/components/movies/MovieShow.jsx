@@ -1,7 +1,9 @@
 import React from 'react';
 import { fetchMovie } from '../../actions';
 import { connect } from 'react-redux';
-import { Grid, Header, Loader, Image, Icon } from 'semantic-ui-react';
+import { GenresLabels, VoteScore, MovieDuration, ReleaseDate, CountingDownProgressBar } from './MovieItem';
+import MovieCredits from './MovieCredits';
+import { Grid, Header, Loader, Image } from 'semantic-ui-react';
 
 class MovieShow extends React.Component {
     componentDidMount() {
@@ -14,30 +16,66 @@ class MovieShow extends React.Component {
             return <div><Loader active inline='centered' content="Loading" /></div>;
         }
 
-        const { image, title, original_title, overview, vote_average_mdb} = this.props.movie;
-        const starImage = <Icon name='star' color="yellow" />
+        const {
+            id,
+            image,
+            title,
+            original_title,
+            overview,
+            vote_average_mdb,
+            genres,
+            release_date,
+            release_date_digital,
+            runtime
+        } = this.props.movie;
+
 
         return (
             <div>
-                <Grid>
-                <Grid.Row>
-                <Grid.Column width={3}>
-                    <Image 
-                    src={image}
-                     size='medium' 
-                     label={{ as: 'a', color: 'black', content: vote_average_mdb.toFixed(1), icon: starImage , ribbon: true }}
-                     bordered />
-                </Grid.Column>
-                <Grid.Column width={13}>
-                    <Header as='h2'>
-                        {title}
-                        <Header.Subheader>{original_title}</Header.Subheader>
-                    </Header>
-                {overview}
-                </Grid.Column>
-                </Grid.Row>
+                <Grid stackable>
+                    <Grid.Column width={4}>
+                        <Image
+                            src={image}
+                            size='large'
+                            bordered />
+                    </Grid.Column>
+                    <Grid.Column width={12}>
+                        <Header as='h2' >
+                            {title}
+                            <Header.Subheader>{original_title}</Header.Subheader>
+                        </Header>
+                        <Grid>
+                            <Grid.Column width={5} >
+                                <VoteScore vote={vote_average_mdb} />
+                            </Grid.Column>
+                            <Grid.Column tablet={5} >
+                                <MovieDuration duration={runtime} />
+                            </Grid.Column>
+                            <Grid.Column tablet={5} >
+                                <ReleaseDate releaseDate={release_date} />
+                            </Grid.Column>
+                        </Grid>
+
+                        <Grid.Row>
+                            <GenresLabels genres={genres} />
+                        </Grid.Row>
+                        <Grid.Row>
+                            {overview}
+                        </Grid.Row>
+                        <Grid.Row>
+                            <CountingDownProgressBar
+                                release_date={release_date}
+                                release_date_digital={release_date_digital} />
+                        </Grid.Row>
+                    </Grid.Column>
+                    <Grid.Row>
+                        <Grid.Column width={12} floated="right">
+                            <Header size='huge'>Najlepiej opłacana obsada</Header>
+                            <MovieCredits movieID={id} />
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
-            </div>
+            </div >
         )
     }
 

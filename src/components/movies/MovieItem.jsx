@@ -6,6 +6,59 @@ import moment from "moment";
 import { ProgressCalculator, Duration } from '../../utils/calcualtor'
 moment.locale('pl', plLocale);
 
+export const GenresLabels = ({ genres }) => {
+    return genres.map(genre => {
+        return <Label key={genre.name} as='a' basic>{genre.name}</Label>
+    });
+}
+
+
+export const VoteScore = ({ vote, as = 'h4' }) => {
+    return (
+        <Header as={as} image>
+            <Icon name='star' color="yellow" size='small' />
+            <Header.Content content={vote.toFixed(1)} />
+        </Header>
+    )
+}
+
+export const MovieDuration = ({ duration, as = 'h4' }) => {
+    return (
+        <Header as={as} image>
+            <Icon name='clock outline' color="grey" size='small' />                                            <Header.Content>
+                {Duration(duration)}
+            </Header.Content>
+        </Header>
+    )
+}
+
+export const ReleaseDate = ({ releaseDate, as = 'h4' }) => {
+    return (
+        <Header as={as} image>
+            <Icon name='ticket alternate' color="grey" size='small' />                                            <Header.Content>
+                {moment(releaseDate).format('DD/MM/YYYY')}
+            </Header.Content>
+        </Header>
+    )
+}
+
+
+export const CountingDownProgressBar = ({ release_date, release_date_digital }) => {
+    const remains = moment(release_date_digital).diff(moment(), 'days')
+
+    if (!release_date_digital) {
+        return <Segment secondary>Data pierwszego wydania jeszcze nie została ujawniona</Segment>
+    }
+
+    return (
+        <Progress
+            percent={ProgressCalculator(release_date, release_date_digital)}
+            size='small'
+            label={`Do pierwszego wydania pozostało: ${remains} dni (${moment(release_date_digital).format('LL')})`}
+            indicating />
+    )
+}
+
 const MovieCard = props => {
     const {
         id,
@@ -19,25 +72,9 @@ const MovieCard = props => {
         vote_average_mdb,
         genres
     } = props.movie
-    const remains = moment(release_date_digital).diff(moment(), 'days')
     const disabled = release_date_digital != '' ? false : true
-    const genre = genres.map(genre => {
-        return <Label key={genre.name} as='a' basic>{genre.name}</Label>
-    });
 
-    function getProgressBar() {
-        if (!disabled) {
-            return (
-                <Progress
-                    percent={ProgressCalculator(release_date, release_date_digital)}
-                    size='small'
-                    label={`Do pierwszego wydania pozostało: ${remains} dni (${moment(release_date_digital).format('LL')})`}
-                    indicating />
-            )
-        } else {
-            return <Segment secondary>Data pierwszego wydania jeszcze nie została ujawniona</Segment>
-        }
-    }
+
     return (
         < Item >
             <Item.Image >
@@ -57,33 +94,23 @@ const MovieCard = props => {
                     <Grid.Column width={3}>
                         <Grid>
                             <Grid.Column tablet={16} computer={16} mobile={5}>
-                                <Header as='h4' image>
-                                    <Icon name='star' color="yellow" size='small' />                                            <Header.Content>
-                                        {vote_average_mdb.toFixed(1)}
-                                    </Header.Content>
-                                </Header>
+                                <VoteScore vote={vote_average_mdb} />
                             </Grid.Column>
                             <Grid.Column tablet={16} computer={16} mobile={5}>
-                                <Header as='h4' image>
-                                    <Icon name='clock outline' color="grey" size='small' />                                            <Header.Content>
-                                        {Duration(runtime)}
-                                    </Header.Content>
-                                </Header>
+                                <MovieDuration duration={runtime} />
                             </Grid.Column>
                             <Grid.Column tablet={16} computer={16} mobile={5}>
-                                <Header as='h4' image>
-                                    <Icon name='ticket alternate' color="grey" size='small' />                                            <Header.Content>
-                                        {moment(release_date).format('DD/MM/YYYY')}
-                                    </Header.Content>
-                                </Header>
+                                <ReleaseDate releaseDate={release_date} />
                             </Grid.Column>
                         </Grid>
                     </Grid.Column>
                 </Grid>
-                <Item.Extra>{genre}</Item.Extra>
+                <Item.Extra><GenresLabels genres={genres} /></Item.Extra>
                 <Grid textAlign="center" padded='vertically'>
                     <Grid.Column width={10} textAlign="center">
-                        {getProgressBar()}
+                        <CountingDownProgressBar
+                            release_date={release_date}
+                            release_date_digital={release_date_digital} />
                     </Grid.Column>
                 </Grid>
             </Item.Content>
