@@ -87,9 +87,7 @@ const MovieCard = props => {
                 </Item.Meta>
                 <Grid columns={2} stackable columns='equal'>
                     <Grid.Column>
-                        {/* <Segment> */}
                         <Item.Description>{overview}</Item.Description>
-                        {/* </Segment> */}
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <Grid>

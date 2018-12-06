@@ -1,5 +1,5 @@
 import movies from "../apis/movies";
-import { FETCH_MOVIES, FETCH_MOVIE, FETCH_CREDIT } from "./types";
+import { FETCH_MOVIES, FETCH_MOVIE, FETCH_CREDIT, FETCH_TRAILER } from "./types";
 
 
 export const fetchMovies = () => async dispatch => {
@@ -18,4 +18,10 @@ export const fetchMovieCredit = id => async dispatch => {
     const response = await movies.get(`/movies/${id}/credits`);
 
     dispatch({ type: FETCH_CREDIT, payload: response.data });
+};
+
+export const fetchMovieTrailer = id => async dispatch => {
+    const response = await movies.get(`/movies/${id}/videos`);
+
+    dispatch({ type: FETCH_TRAILER, payload: response.data });
 };
