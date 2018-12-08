@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import Header from './components/Header'
 import Home from './components/Home'
 import { Container } from 'semantic-ui-react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import MovieShow from './components/movies/MovieShow';
+import history from './history';
 
 class App extends Component {
   render() {
     return (
       <Container>
-        <BrowserRouter>
+        <Router history={history} >
           <React.Fragment>
             <Header />
             <Switch>
@@ -17,7 +18,7 @@ class App extends Component {
               <Route path="/movies/:id" exact component={MovieShow} />
             </Switch>
           </React.Fragment>
-        </BrowserRouter>
+        </Router>
       </Container>
     );
   }

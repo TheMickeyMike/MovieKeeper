@@ -41,12 +41,17 @@ def newMovie():
     resp = Response(status=201, mimetype='application/json')
     return resp
 
-@app.route('/movies/<movie_id>')
+@app.route('/movies/<movie_id>', methods=['GET'])
 def movie(movie_id):
     movies = json.dumps(get_movie(movie_id))
     resp = Response(movies, status=200, mimetype='application/json')
     return resp
 
+@app.route('/movies/<movie_id>', methods=['DELETE'])
+def deleteMovie(movie_id):
+    print('Delete movie {}'.format(movie_id))
+    resp = Response(status=204, mimetype='application/json')
+    return resp
 
 @app.route('/movies/<movie_id>/credits')
 def movie_credits(movie_id):

@@ -3,8 +3,9 @@ import { fetchMovie } from '../../actions';
 import { connect } from 'react-redux';
 import { GenresLabels, VoteScore, MovieDuration, ReleaseDate, CountingDownProgressBar } from './MovieItem';
 import MovieCredits from './MovieCredits';
-import { List, Button, Item, Divider, Grid, Header, Loader, Image, GridRow, Segment } from 'semantic-ui-react';
+import { List, Divider, Grid, Header, Loader, Image, Segment } from 'semantic-ui-react';
 import MovieTrailers from './MovieTrailers';
+import MovieActions from './MovieActions';
 
 
 class MovieShow extends React.Component {
@@ -53,11 +54,7 @@ class MovieShow extends React.Component {
                                 size="big"
                                 bordered />
                         </Segment>
-                        <Button.Group attached='bottom'  >
-                            <Button basic color='green' size='small' content="Odświerz" />
-                            <Button basic color='red' size='small' content="Usuń z listy" />
-                        </Button.Group>
-
+                        <MovieActions movieID={id} />
                     </Grid.Column>
                     <Grid.Column width={9}>
                         <Header as='h1' >

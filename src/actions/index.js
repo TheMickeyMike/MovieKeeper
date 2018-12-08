@@ -1,10 +1,12 @@
 import movies from "../apis/movies";
+import history from '../history';
 import {
     FETCH_MOVIES,
     FETCH_MOVIE,
     FETCH_CREDIT,
     FETCH_TRAILER,
-    ADD_MOVIE
+    ADD_MOVIE,
+    DELETE_MOVIE
 } from "./types";
 
 
@@ -36,4 +38,11 @@ export const addMovie = formValues => async dispatch => {
     const response = await movies.post('/movies', { ...formValues });
 
     dispatch({ type: ADD_MOVIE, payload: response.data });
+};
+
+export const deleteMovie = id => async dispatch => {
+    await movies.delete(`/movies/${id}`);
+
+    dispatch({ type: DELETE_MOVIE, payload: id });
+    history.push('/');
 };
