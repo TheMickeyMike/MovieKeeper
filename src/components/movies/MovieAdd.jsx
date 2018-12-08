@@ -4,6 +4,11 @@ import { Field, reduxForm } from 'redux-form'
 
 class StreamForm extends React.Component {
 
+    options = [
+        { key: 'en', text: 'English', value: 'en-EN' },
+        { key: 'pl', text: 'Polski', value: 'pl-PL' },
+    ]
+
     renderError({ error, touched }) {
         if (touched && error) {
             return <Message warning list={[error]} />

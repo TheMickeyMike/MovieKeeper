@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Label } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 
 class Header extends Component {
@@ -9,8 +9,8 @@ class Header extends Component {
                 <Menu.Item as={Link} to="/">
                     <img src='/logo.png' />
                 </Menu.Item>
-                <Menu.Item as={NavLink} exact to="/" name="home" />
-                <Menu.Item as={NavLink} exact to="/md" name="MD" />
+                <Menu.Item as={NavLink} exact to="/" name="lista" />
+                <Menu.Item as={NavLink} exact to="/pending" name="Nowe" />
             </Menu>
         )
     }
