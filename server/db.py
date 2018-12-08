@@ -2105,3 +2105,137 @@ casts = [
     }
   ]
 }]
+
+
+videos = [
+ {
+  "id": 338952,
+  "results": [
+    {
+      "id": "5aa8022b9251415e39020579",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "5sEaYB4rLFQ",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald - Official Teaser Trailer",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Teaser"
+    },
+    {
+      "id": "5b54e671c3a3685c8b00594f",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "vvFybpmyB9E",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald - Official Comic-Con Trailer",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Trailer"
+    },
+    {
+      "id": "5baa5d32c3a3683a9c00075e",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "8bYBOVWLNIs",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald - Final Trailer",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Trailer"
+    },
+    {
+      "id": "5be057f892514137d8039828",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "U0YyQ9TGQa0",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald (2018) - Featurette - Newt's New Grindelwald",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Featurette"
+    },
+    {
+      "id": "5be0583fc3a3682b3d03eacf",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "_dVmXhXFI6o",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald (2018) - TV Spot - Hunt",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Teaser"
+    },
+    {
+      "id": "5be3b7eb0e0a2614ba023815",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "DwfO-pLonAY",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald (2018) - Featurette - Distinctly Dumbledore",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Featurette"
+    },
+    {
+      "id": "5be76ce3c3a368173d020b4f",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "9M2QMIio8sY",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald (2018) - Featurette - Harry Potter",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Featurette"
+    },
+    {
+      "id": "5bfca3150e0a26360e01ef57",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "DCfCA92Eifk",
+      "name": "Fantastic Beasts: The Crimes of Grindelwald - TV Spot - Chosen (2018)",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Teaser"
+    }
+  ]
+},
+{
+  "id": 335983,
+  "results": [
+    {
+      "id": "5a7c6a35c3a3680f7f01053a",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "dzxFdtWmjto",
+      "name": "VENOM - Official Teaser Trailer (HD)",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Teaser"
+    },
+    {
+      "id": "5a7cd5389251414b22019912",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "MDR3bfmzV8c",
+      "name": "VENOM - Teaser Trailer - In Cinemas October 4",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Teaser"
+    },
+    {
+      "id": "5adeb1bf0e0a2615e400435d",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "u9Mv98Gr5pY",
+      "name": "VENOM - Official Trailer (HD)",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Trailer"
+    },
+    {
+      "id": "5b60970d0e0a267ef400031c",
+      "iso_639_1": "en",
+      "iso_3166_1": "US",
+      "key": "xLCn88bfW1o",
+      "name": "VENOM - Official Trailer 2 (HD)",
+      "site": "YouTube",
+      "size": 1080,
+      "type": "Trailer"
+    }
+  ]
+},
+]

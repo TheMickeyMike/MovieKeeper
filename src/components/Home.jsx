@@ -1,21 +1,25 @@
 import React from 'react';
 import MovieList from './movies/MovieList'
-import { Input, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { addMovie } from '../actions';
+import MovieAdd from './movies/MovieAdd';
 
-const Home = props => {
-    return (
-        <React.Fragment>
-            <Segment textAlign="center">
-                <Input
-                    action={{ color: 'teal', labelPosition: 'right', icon: 'add', content: 'Add' }}
-                    placeholder='Add new video...'
-                    fluid
-                />
-            </Segment>
+class Home extends React.Component {
+    onSubmit = formValues => {
+        this.props.addMovie(formValues);
+    };
 
-            <MovieList />
-        </React.Fragment>
-    )
-
+    render() {
+        return (
+            <React.Fragment>
+                <MovieAdd onSubmit={this.onSubmit} />
+                <MovieList />
+            </React.Fragment>
+        );
+    }
 }
-export default Home;
+
+export default connect(
+    null,
+    { addMovie }
+)(Home);

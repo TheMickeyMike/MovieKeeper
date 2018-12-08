@@ -3,13 +3,26 @@ import { fetchMovie } from '../../actions';
 import { connect } from 'react-redux';
 import { GenresLabels, VoteScore, MovieDuration, ReleaseDate, CountingDownProgressBar } from './MovieItem';
 import MovieCredits from './MovieCredits';
-import { Grid, Header, Loader, Image } from 'semantic-ui-react';
+import { List, Button, Item, Divider, Grid, Header, Loader, Image, GridRow, Segment } from 'semantic-ui-react';
+import MovieTrailers from './MovieTrailers';
+
 
 class MovieShow extends React.Component {
     componentDidMount() {
         const { id } = this.props.match.params;
 
         this.props.fetchMovie(id);
+    }
+
+    getMovieTrailers() {
+        if (!this.props.trailers) {
+            return <div><Loader active inline='centered' /></div>;
+        }
+        return (
+            <List divided horizontal>
+                {this.renderTrailer()}
+            </List>
+        )
     }
     render() {
         if (!this.props.movie) {
@@ -32,36 +45,43 @@ class MovieShow extends React.Component {
 
         return (
             <div>
-                <Grid stackable>
-                    <Grid.Column width={4}>
-                        <Image
-                            src={image}
-                            size='large'
-                            bordered />
+                <Grid stackable >
+                    <Grid.Column width={7}>
+                        <Segment attached>
+                            <Image centered
+                                src={image}
+                                size="big"
+                                bordered />
+                        </Segment>
+                        <Button.Group attached='bottom'  >
+                            <Button basic color='green' size='small' content="Odświerz" />
+                            <Button basic color='red' size='small' content="Usuń z listy" />
+                        </Button.Group>
+
                     </Grid.Column>
-                    <Grid.Column width={12}>
-                        <Header as='h2' >
+                    <Grid.Column width={9}>
+                        <Header as='h1' >
                             {title}
                             <Header.Subheader>{original_title}</Header.Subheader>
                         </Header>
                         <Grid>
                             <Grid.Column width={5} >
-                                <VoteScore vote={vote_average_mdb} />
+                                <VoteScore vote={vote_average_mdb} as={"h3"} />
                             </Grid.Column>
                             <Grid.Column tablet={5} >
-                                <MovieDuration duration={runtime} />
+                                <MovieDuration duration={runtime} as={"h3"} />
                             </Grid.Column>
                             <Grid.Column tablet={5} >
-                                <ReleaseDate releaseDate={release_date} />
+                                <ReleaseDate releaseDate={release_date} as={"h3"} />
                             </Grid.Column>
                         </Grid>
-
+                        <Divider hidden />
+                        <Grid.Row>{overview}</Grid.Row>
+                        <Divider hidden />
                         <Grid.Row>
                             <GenresLabels genres={genres} />
                         </Grid.Row>
-                        <Grid.Row>
-                            {overview}
-                        </Grid.Row>
+                        <Divider hidden />
                         <Grid.Row>
                             <CountingDownProgressBar
                                 release_date={release_date}
@@ -69,9 +89,11 @@ class MovieShow extends React.Component {
                         </Grid.Row>
                     </Grid.Column>
                     <Grid.Row>
-                        <Grid.Column width={12} floated="right">
+                        <Grid.Column width={16} floated="right">
                             <Header size='huge'>Najlepiej opłacana obsada</Header>
                             <MovieCredits movieID={id} />
+                            <Header size='huge'>Trailers</Header>
+                            <MovieTrailers movieID={id} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
