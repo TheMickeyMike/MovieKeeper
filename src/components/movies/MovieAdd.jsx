@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Segment, Message } from 'semantic-ui-react'
+import { Form, Segment, Message, Button } from 'semantic-ui-react'
 import { Field, reduxForm } from 'redux-form'
 
 class StreamForm extends React.Component {
@@ -20,7 +20,7 @@ class StreamForm extends React.Component {
             <div>
                 <Form.Input
                     {...input}
-                    action={{ color: 'teal', labelPosition: 'right', icon: 'add', content: 'Add' }}
+                    action={<Button color="teal" labelPosition="right" icon="add" content="Add" disabled={!meta.valid} />}
                     placeholder={label}
                     fluid />
                 {this.renderError(meta)}
