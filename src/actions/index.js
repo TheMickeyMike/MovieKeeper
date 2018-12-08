@@ -1,5 +1,11 @@
 import movies from "../apis/movies";
-import { FETCH_MOVIES, FETCH_MOVIE, FETCH_CREDIT, FETCH_TRAILER } from "./types";
+import {
+    FETCH_MOVIES,
+    FETCH_MOVIE,
+    FETCH_CREDIT,
+    FETCH_TRAILER,
+    ADD_MOVIE
+} from "./types";
 
 
 export const fetchMovies = () => async dispatch => {
@@ -24,4 +30,10 @@ export const fetchMovieTrailer = id => async dispatch => {
     const response = await movies.get(`/movies/${id}/videos`);
 
     dispatch({ type: FETCH_TRAILER, payload: response.data });
+};
+
+export const addMovie = formValues => async dispatch => {
+    const response = await movies.post('/movies', { ...formValues });
+
+    dispatch({ type: ADD_MOVIE, payload: response.data });
 };

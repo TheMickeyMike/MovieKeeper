@@ -1,10 +1,11 @@
 from flask import Flask
 import json
 from db import movieList, casts, videos
-from flask import Response
+from flask import Response, request
 import time 
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 
 def get_movie(id):
     for movie in movieList:
@@ -27,20 +28,23 @@ def index():
     return 'Hello world'
 
 
-@app.route('/movies')
+@app.route('/movies', methods=['GET'])
 def movies():
     movies = json.dumps(movieList)
     resp = Response(movies, status=200, mimetype='application/json')
-    resp.headers['Access-Control-Allow-Origin'] = '*'
-
     return resp
 
+@app.route('/movies', methods=['POST'])
+def newMovie():
+    data = request.json
+    print(data)
+    resp = Response(status=201, mimetype='application/json')
+    return resp
 
 @app.route('/movies/<movie_id>')
 def movie(movie_id):
     movies = json.dumps(get_movie(movie_id))
     resp = Response(movies, status=200, mimetype='application/json')
-    resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
 
@@ -48,7 +52,6 @@ def movie(movie_id):
 def movie_credits(movie_id):
     movies = json.dumps(get_credits(movie_id))
     resp = Response(movies, status=200, mimetype='application/json')
-    resp.headers['Access-Control-Allow-Origin'] = '*'
     # time.sleep(3)
     return resp
 
@@ -56,7 +59,6 @@ def movie_credits(movie_id):
 def movie_video(movie_id):
     movies = json.dumps(get_video(movie_id))
     resp = Response(movies, status=200, mimetype='application/json')
-    resp.headers['Access-Control-Allow-Origin'] = '*'
     # time.sleep(3)
     return resp
 

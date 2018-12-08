@@ -26,7 +26,6 @@ class MovieCredits extends React.Component {
 
     render() {
         if (!this.props.credits) {
-            console.log(this.props.credits)
             return <div><Loader active inline='centered' content="Loading" /></div>;
         }
 
