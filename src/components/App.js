@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Header from './components/Header'
-import Home from './components/Home'
+import Header from './Header'
+import Home from './Home'
 import { Container } from 'semantic-ui-react';
 import { Router, Switch, Route } from 'react-router-dom';
-import MovieShow from './components/movies/MovieShow';
-import Pending from './components/Pending';
-import history from './history';
+import MovieShow from './movies/MovieShow';
+import Pending from './Pending';
+import history from '../history';
 
 class App extends Component {
   render() {
