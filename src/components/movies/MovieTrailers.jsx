@@ -7,7 +7,9 @@ class MovieTrailers extends React.Component {
     componentDidMount() {
         const { movieID } = this.props;
 
-        this.props.fetchMovieTrailer(movieID);
+        if (!this.props.trailers) {
+            this.props.fetchMovieTrailer(movieID);
+        }
     }
 
     renderTrailers() {

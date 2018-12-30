@@ -7,7 +7,9 @@ class MovieCredits extends React.Component {
     componentDidMount() {
         const { movieID } = this.props;
 
-        this.props.fetchMovieCredit(movieID);
+        if (!this.props.credits) {
+            this.props.fetchMovieCredit(movieID);
+        }
     }
 
     renderCards() {
