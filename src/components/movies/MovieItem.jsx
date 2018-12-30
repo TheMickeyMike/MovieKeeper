@@ -25,9 +25,8 @@ export const VoteScore = ({ vote, as = 'h4' }) => {
 export const MovieDuration = ({ duration, as = 'h4' }) => {
     return (
         <Header as={as} image>
-            <Icon name='clock outline' color="grey" size='small' />                                            <Header.Content>
-                {Duration(duration)}
-            </Header.Content>
+            <Icon name='clock outline' color="grey" size='small' />
+            <Header.Content content={Duration(duration)} />
         </Header>
     )
 }
@@ -35,9 +34,8 @@ export const MovieDuration = ({ duration, as = 'h4' }) => {
 export const ReleaseDate = ({ releaseDate, as = 'h4' }) => {
     return (
         <Header as={as} image>
-            <Icon name='ticket alternate' color="grey" size='small' />                                            <Header.Content>
-                {moment(releaseDate).format('DD/MM/YYYY')}
-            </Header.Content>
+            <Icon name='ticket alternate' color="grey" size='small' />
+            <Header.Content content={moment(releaseDate).format('DD/MM/YYYY')} />
         </Header>
     )
 }
@@ -54,7 +52,7 @@ export const CountingDownProgressBar = ({ release_date, release_date_digital }) 
         <Progress
             percent={ProgressCalculator(release_date, release_date_digital)}
             size='small'
-            label={`Do pierwszego wydania pozostało: ${remains} dni (${moment(release_date_digital).format('LL')})`}
+            label={`Do pierwszego wydania pozostało: ${remains <= 0 ? 0 : remains} dni (${moment(release_date_digital).format('LL')})`}
             indicating />
     )
 }
@@ -81,7 +79,7 @@ const MovieCard = props => {
                 <Image src={image} release_date_digital disabled={disabled} />
             </Item.Image>
             <Item.Content>
-                <Item.Header as={Link} to={`/movies/${id}`}>{`${title} (${moment(release_date).format("YYYY")})`}</Item.Header>
+                <Item.Header as={Link} to={`/movies/${id} `}>{`${title} (${moment(release_date).format("YYYY")})`}</Item.Header>
                 <Item.Meta>
                     <span className='cinema'>{original_title}</span>
                 </Item.Meta>

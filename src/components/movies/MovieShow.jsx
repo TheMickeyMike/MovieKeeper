@@ -3,7 +3,7 @@ import { fetchMovie } from '../../actions';
 import { connect } from 'react-redux';
 import { GenresLabels, VoteScore, MovieDuration, ReleaseDate, CountingDownProgressBar } from './MovieItem';
 import MovieCredits from './MovieCredits';
-import { List, Divider, Grid, Header, Loader, Image, Segment } from 'semantic-ui-react';
+import { Divider, Grid, Header, Loader, Image, Segment } from 'semantic-ui-react';
 import MovieTrailers from './MovieTrailers';
 import MovieActions from './MovieActions';
 
@@ -12,18 +12,9 @@ class MovieShow extends React.Component {
     componentDidMount() {
         const { id } = this.props.match.params;
 
-        this.props.fetchMovie(id);
-    }
-
-    getMovieTrailers() {
-        if (!this.props.trailers) {
-            return <div><Loader active inline='centered' /></div>;
+        if (!this.props.movie) {
+            this.props.fetchMovie(id);
         }
-        return (
-            <List divided horizontal>
-                {this.renderTrailer()}
-            </List>
-        )
     }
     render() {
         if (!this.props.movie) {
@@ -102,7 +93,7 @@ class MovieShow extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    return { movie: state.movies[ownProps.match.params.id] };
+    return { movie: state.movies[parseInt(ownProps.match.params.id)] };
 };
 
 
