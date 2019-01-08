@@ -25,13 +25,13 @@ export const fetchMovie = id => async dispatch => {
 export const fetchMovieCredit = id => async dispatch => {
     const response = await movies.get(`/movies/${id}/credits`);
 
-    dispatch({ type: FETCH_CREDIT, payload: response.data });
+    dispatch({ type: FETCH_CREDIT, payload: { movieId: id, cast: response.data } });
 };
 
 export const fetchMovieTrailer = id => async dispatch => {
     const response = await movies.get(`/movies/${id}/videos`);
 
-    dispatch({ type: FETCH_TRAILER, payload: response.data });
+    dispatch({ type: FETCH_TRAILER, payload: { movieId: id, trailers: response.data } });
 };
 
 export const addMovie = formValues => async dispatch => {

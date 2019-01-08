@@ -15,13 +15,13 @@ def get_movie(id):
 def get_credits(id):
     for cast in casts:
         if str(cast['id']) == id:
-            return cast
+            return cast['cast']
 
 
 def get_video(id):
     for video in videos:
         if str(video['id']) == id:
-            return video
+            return video['results']
 
 @app.route('/')
 def index():

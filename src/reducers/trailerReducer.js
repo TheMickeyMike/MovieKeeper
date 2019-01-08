@@ -6,7 +6,7 @@ export default (state = {}, action) => {
         case FETCH_TRAILER:
             return {
                 ...state,
-                [action.payload.id]: _.filter(action.payload.results, {
+                [action.payload.movieId]: _.filter(action.payload.trailers, {
                     'type': 'Trailer',
                     'site': 'YouTube',
                 })
