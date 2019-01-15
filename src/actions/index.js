@@ -23,7 +23,7 @@ export const fetchMovie = id => async dispatch => {
 };
 
 export const fetchMovieCredit = id => async dispatch => {
-    const response = await movies.get(`/movies/${id}/credits`);
+    const response = await movies.get(`/movies/${id}/cast`);
 
     dispatch({ type: FETCH_CREDIT, payload: { movieId: id, cast: response.data } });
 };

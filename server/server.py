@@ -53,7 +53,7 @@ def deleteMovie(movie_id):
     resp = Response(status=204, mimetype='application/json')
     return resp
 
-@app.route('/movies/<movie_id>/credits')
+@app.route('/movies/<movie_id>/cast')
 def movie_credits(movie_id):
     movies = json.dumps(get_credits(movie_id))
     resp = Response(movies, status=200, mimetype='application/json')
