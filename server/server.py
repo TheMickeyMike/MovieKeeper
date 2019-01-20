@@ -12,16 +12,33 @@ def get_movie(id):
         if movie['id'] == id:
             return movie
 
+
+def update_watched_movie(id, watched):
+    for idx, movie in enumerate(movieList):
+        if movie['id'] == id:
+            new = movie
+            new['watched'] = watched
+            movieList[idx] = new
+            return movie
+
 def get_credits(id):
     for cast in casts:
         if str(cast['id']) == id:
             return cast['cast']
 
+def str2bool(v):
+  return v.lower() in ("yes", "true", "t", "1")
 
 def get_video(id):
     for video in videos:
         if str(video['id']) == id:
             return video['results']
+
+def filter_by_watched(movie_list, watched):
+    print(watched)
+    updated =  [x for x in movie_list if x['watched'] == str2bool(watched)]
+    return updated
+
 
 @app.route('/')
 def index():
@@ -30,7 +47,8 @@ def index():
 
 @app.route('/movies', methods=['GET'])
 def movies():
-    movies = json.dumps(movieList)
+    watched = request.args.get('watched', False)
+    movies = json.dumps(filter_by_watched(movieList, watched))
     resp = Response(movies, status=200, mimetype='application/json')
     return resp
 
@@ -51,6 +69,7 @@ def movie(movie_id):
 def update_movie(movie_id):
     data = request.json
     print(data)
+    update_watched_movie(movie_id, data['watched'])
     movies = json.dumps(get_movie(movie_id))
     resp = Response(movies, status=200, mimetype='application/json')
     return resp
