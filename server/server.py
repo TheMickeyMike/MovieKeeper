@@ -47,6 +47,14 @@ def movie(movie_id):
     resp = Response(movies, status=200, mimetype='application/json')
     return resp
 
+@app.route('/movies/<movie_id>', methods=['PUT'])
+def update_movie(movie_id):
+    data = request.json
+    print(data)
+    movies = json.dumps(get_movie(movie_id))
+    resp = Response(movies, status=200, mimetype='application/json')
+    return resp
+
 @app.route('/movies/<movie_id>', methods=['DELETE'])
 def deleteMovie(movie_id):
     print('Delete movie {}'.format(movie_id))

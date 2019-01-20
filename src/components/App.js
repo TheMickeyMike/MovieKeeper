@@ -4,7 +4,7 @@ import Home from './Home'
 import { Container } from 'semantic-ui-react';
 import { Router, Switch, Route } from 'react-router-dom';
 import MovieShow from './movies/MovieShow';
-import Pending from './Pending';
+import Watched from './Watched';
 import history from '../history';
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/movies/:id" exact component={MovieShow} />
-              <Route path="/pending" exact component={Pending} />
+              <Route path="/watched" exact component={Watched} />
             </Switch>
           </React.Fragment>
         </Router>

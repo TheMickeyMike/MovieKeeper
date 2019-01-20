@@ -45,7 +45,7 @@ class MovieShow extends React.Component {
                                 size="big"
                                 bordered />
                         </Segment>
-                        <MovieActions movieID={id} />
+                        <MovieActions movie={this.props.movie} />
                     </Grid.Column>
                     <Grid.Column width={9}>
                         <Header as='h1' >

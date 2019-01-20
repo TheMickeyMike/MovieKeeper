@@ -6,7 +6,7 @@ import { fetchMovies } from '../../actions';
 
 class MovieList extends React.Component {
     componentDidMount() {
-        this.props.fetchMovies();
+        this.props.fetchMovies(this.props.watched);
     }
 
     renderList() {

@@ -15,6 +15,7 @@ movieList = [
         'vote_average_mdb': 7,
         'vote_count': 967,
         'runtime': 112,
+        'watched': False,
         'genres': [
             {
                 'id': 878,
@@ -36,6 +37,7 @@ movieList = [
         'vote_average_mdb': 5.2,
         'vote_count': 345,
         'runtime': 134,
+        'watched': False,
         'genres': [
             {
                 'id': 10751,

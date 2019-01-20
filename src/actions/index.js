@@ -6,12 +6,13 @@ import {
     FETCH_CREDIT,
     FETCH_TRAILER,
     ADD_MOVIE,
-    DELETE_MOVIE
+    DELETE_MOVIE,
+    SEEN_MOVIE
 } from "./types";
 
 
-export const fetchMovies = () => async dispatch => {
-    const response = await movies.get('/movies');
+export const fetchMovies = watched => async dispatch => {
+    const response = await movies.get('/movies', { params: { watched } });
 
     dispatch({ type: FETCH_MOVIES, payload: response.data });
 };
@@ -44,5 +45,12 @@ export const deleteMovie = id => async dispatch => {
     await movies.delete(`/movies/${id}`);
 
     dispatch({ type: DELETE_MOVIE, payload: id });
+    history.push('/');
+};
+
+export const movieIsSeen = (id, watched) => async dispatch => {
+    const response = await movies.put(`/movies/${id}`, { watched });
+
+    dispatch({ type: SEEN_MOVIE, payload: response.data });
     history.push('/');
 };

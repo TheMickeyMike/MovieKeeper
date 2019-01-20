@@ -17,6 +17,7 @@ class MovieTrailers extends React.Component {
             return (
                 <List.Item key={trailer.id}>
                     <iframe
+                        title="Trailer"
                         width="360"
                         height="215"
                         src={`https://www.youtube.com/embed/${trailer.key}`}

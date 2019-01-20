@@ -13,7 +13,7 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 <MovieAdd onSubmit={this.onSubmit} />
-                <MovieList />
+                <MovieList watched={false} />
             </React.Fragment>
         );
     }

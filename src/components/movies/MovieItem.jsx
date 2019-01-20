@@ -68,22 +68,22 @@ const MovieCard = props => {
         original_title,
         runtime,
         vote_average_mdb,
+        watched,
         genres
     } = props.movie
-    const disabled = release_date_digital != '' ? false : true
-
+    const disabled = release_date_digital !== '' ? false : true
 
     return (
         < Item >
             <Item.Image >
-                <Image src={image} release_date_digital disabled={disabled} />
+                <Image src={image} disabled={disabled} />
             </Item.Image>
             <Item.Content>
                 <Item.Header as={Link} to={`/movies/${id} `}>{`${title} (${moment(release_date).format("YYYY")})`}</Item.Header>
                 <Item.Meta>
                     <span className='cinema'>{original_title}</span>
                 </Item.Meta>
-                <Grid columns={2} stackable columns='equal'>
+                <Grid stackable columns='equal'>
                     <Grid.Column>
                         <Item.Description>{overview}</Item.Description>
                     </Grid.Column>
@@ -102,13 +102,16 @@ const MovieCard = props => {
                     </Grid.Column>
                 </Grid>
                 <Item.Extra><GenresLabels genres={genres} /></Item.Extra>
-                <Grid textAlign="center" padded='vertically'>
-                    <Grid.Column width={10} textAlign="center">
-                        <CountingDownProgressBar
-                            release_date={release_date}
-                            release_date_digital={release_date_digital} />
-                    </Grid.Column>
-                </Grid>
+                {watched ? null : (
+                    <Grid textAlign="center" padded='vertically'>
+                        <Grid.Column width={10} textAlign="center">
+                            <CountingDownProgressBar
+                                release_date={release_date}
+                                release_date_digital={release_date_digital} />
+                        </Grid.Column>
+                    </Grid>
+                )}
+
             </Item.Content>
         </Item >
     )
