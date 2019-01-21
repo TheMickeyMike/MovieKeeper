@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import MovieItem from './MovieItem';
 import { Item } from 'semantic-ui-react'
 import { connect } from 'react-redux';
@@ -10,9 +11,9 @@ class MovieList extends React.Component {
     }
 
     renderList() {
-        return this.props.movies.map(movie => {
+        return _.filter(this.props.movies, { watched: this.props.watched }).map(movie => {
             return <MovieItem key={movie.id} movie={movie} />;
-        });
+        })
     }
 
     render() {

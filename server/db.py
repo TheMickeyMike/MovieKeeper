@@ -53,6 +53,28 @@ movieList = [
             }
         ],
     },
+      {
+        'id': '999999',
+        'image': 'https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg',
+        'title': 'Venom',
+        'original_title': 'Venom',
+        'overview': '''Venom, obcy symbiont, jedna z najważniejszych, najbardziej złożonych postaci Marvela wychodzi z cienia, wchodząc w ciało i osobowość Eddiego Brocka(Tom Hardy). Jako dziennikarz, Eddie próbował zdemaskować niecne działania słynnej firmy Life Foundation, prowadzonej przez naukowca Carltona Drake'a (Riz Ahmed). Przez lata stało się to jego obsesją, zniszczyło mu karierę oraz związek z Anne (Michelle Williams). Kiedy jeden z eksperymentów Drake'a - obcy Venom, scala się z ciałem Brocka, ten otrzymuje supermoce i zdolność robienia wszystkiego, czego tylko zapragnie. Wynaturzony, mroczny, nieprzewidywalny, agresywny Venom w ciele Brocka sprawia, że Eddie próbuje zapanować nad nowymi mocami, choć jednocześnie są one kuszące i inspirujące. Jeden i drugi starają się przejąć kontrolę nad sobą nawzajem i dostać to, czego chcą, coraz bardziej spajając się ze sobą.''',
+        'release_date_digital': '2018-12-11T00:00:00.000Z',
+        'release_date_physical': '2018-12-18T00:00:00.000Z',
+        'release_date': '2018-10-03',
+        'original_language': 'en',
+        'vote_average_mdb': 7,
+        'vote_count': 967,
+        'runtime': 112,
+        'watched': True,
+        'genres': [
+            {
+                'id': 878,
+                'name': "Sci-Fi"
+            }
+        ],
+
+    },
 ]
 
 casts = [
