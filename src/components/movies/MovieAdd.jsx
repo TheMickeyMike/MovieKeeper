@@ -20,7 +20,7 @@ class StreamForm extends React.Component {
             <div>
                 <Form.Input
                     {...input}
-                    action={<Button color="teal" labelPosition="right" icon="add" content="Add" disabled={!meta.valid} />}
+                    action={<Button color="teal" labelPosition="right" icon="add" content="Dodaj" disabled={!meta.valid} />}
                     placeholder={label}
                     fluid />
                 {this.renderError(meta)}

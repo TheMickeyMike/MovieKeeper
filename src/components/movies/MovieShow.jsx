@@ -29,6 +29,7 @@ class MovieShow extends React.Component {
             overview,
             vote_average_mdb,
             genres,
+            watched,
             release_date,
             release_date_digital,
             runtime
@@ -70,11 +71,13 @@ class MovieShow extends React.Component {
                             <GenresLabels genres={genres} />
                         </Grid.Row>
                         <Divider hidden />
+                        {watched ? null : (
                         <Grid.Row>
                             <CountingDownProgressBar
                                 release_date={release_date}
                                 release_date_digital={release_date_digital} />
                         </Grid.Row>
+                         )}
                     </Grid.Column>
                     <Grid.Row>
                         <Grid.Column width={16} floated="right">
