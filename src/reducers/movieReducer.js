@@ -1,16 +1,28 @@
 import _ from 'lodash';
-import { FETCH_MOVIES, FETCH_MOVIE, DELETE_MOVIE, SEEN_MOVIE } from '../actions/types';
+import { FETCH_MOVIES, FETCH_MOVIE, DELETE_MOVIE, SEEN_MOVIE, ADD_MOVIE_ERROR, ADD_MOVIE } from '../actions/types';
 
-export default (state = {}, action) => {
+const INITIAL_STATE = {
+    entities: {},
+    errorMessage: ''
+};
+
+
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_MOVIES:
-            return { ...state, ..._.mapKeys(action.payload, 'id') };
+            return { ...state, entities: { ...state.entities, ..._.mapKeys(action.payload, 'id') } };
         case FETCH_MOVIE:
-            return { ...state, [action.payload.id]: action.payload };
+            return { ...state, entities: { ...state.entities, [action.payload.id]: action.payload } };
         case DELETE_MOVIE:
-            return _.omit(state, action.payload);
+            console.log(state.entities, action.payload)
+            return { ...state, entities: { ..._.omit(state.entities, action.payload) } };
         case SEEN_MOVIE:
-            return { ...state, [action.payload.id]: action.payload }
+            return { ...state, entities: { ...state.entities, [action.payload.id]: action.payload } }
+        case ADD_MOVIE:
+            return { ...state, errorMessage: '' }
+
+        case ADD_MOVIE_ERROR:
+            return { ...state, errorMessage: action.payload }
         default:
             return state;
     }

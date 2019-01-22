@@ -1,8 +1,10 @@
 import React from 'react';
 import { Form, Segment, Message, Button } from 'semantic-ui-react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-class StreamForm extends React.Component {
+class MovieAddForm extends React.Component {
 
     options = [
         { key: 'en', text: 'English', value: 'en-EN' },
@@ -12,6 +14,12 @@ class StreamForm extends React.Component {
     renderError({ error, touched }) {
         if (touched && error) {
             return <Message warning list={[error]} />
+        }
+    }
+
+    renderSubmitError(errorMessage) {
+        if (errorMessage) {
+            return <Message error list={[errorMessage]} />
         }
     }
 
@@ -28,16 +36,18 @@ class StreamForm extends React.Component {
         );
     }
 
-    onSubmit = formValues => {
+    onSubmit = (formValues) => {
         this.props.onSubmit(formValues);
+        this.props.reset();
     };
 
     render() {
         return (
             <Segment textAlign="center">
-                <Form warning onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                <Form warning error onSubmit={this.props.handleSubmit(this.onSubmit)}>
                     <Field name="title" component={this.renderInput} label="Dodaj nowy film...." />
                 </Form>
+                {this.renderSubmitError(this.props.errorMessage)}
             </Segment>
         )
     }
@@ -52,7 +62,20 @@ const validate = formValues => {
 };
 
 
-export default reduxForm({
-    form: 'addMovieForm',
-    validate
-})(StreamForm);
+function mapStateToProps(state) {
+    return { errorMessage: state.movies.errorMessage };
+}
+
+export default compose(
+    connect(mapStateToProps),
+    reduxForm({
+        form: 'addMovieForm',
+        validate
+    })
+)(MovieAddForm);
+
+
+// export default reduxForm({
+//     form: 'addMovieForm',
+//     validate
+// })(MovieAddForm);

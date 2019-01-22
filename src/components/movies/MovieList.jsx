@@ -23,7 +23,7 @@ class MovieList extends React.Component {
 };
 
 const mapStateToProps = state => {
-    return { movies: Object.values(state.movies) };
+    return { movies: Object.values(state.movies.entities) };
 };
 
 export default connect(

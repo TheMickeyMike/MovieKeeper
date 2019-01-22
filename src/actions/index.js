@@ -7,8 +7,10 @@ import {
     FETCH_TRAILER,
     ADD_MOVIE,
     DELETE_MOVIE,
-    SEEN_MOVIE
+    SEEN_MOVIE,
+    ADD_MOVIE_ERROR
 } from "./types";
+
 
 
 export const fetchMovies = watched => async dispatch => {
@@ -36,9 +38,19 @@ export const fetchMovieTrailer = id => async dispatch => {
 };
 
 export const addMovie = formValues => async dispatch => {
-    const response = await movies.post('/movies', { ...formValues });
+    try {
+        const response = await movies.post('/movies', { ...formValues });
+        dispatch({ type: ADD_MOVIE, payload: response.data });
 
-    dispatch({ type: ADD_MOVIE, payload: response.data });
+    } catch (e) {
+        if (e.response.status < 500) {
+            dispatch({ type: ADD_MOVIE_ERROR, payload: e.response.data.message });
+        }
+    }
+    // if (response.status !== 201) {
+    //     dispatch({ type: ADD_MOVIE_ERROR, payload: response.data.message });
+    // }
+    // dispatch({ type: ADD_MOVIE, payload: response.data });
 };
 
 export const deleteMovie = id => async dispatch => {
