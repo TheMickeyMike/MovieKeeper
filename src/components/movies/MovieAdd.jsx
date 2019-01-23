@@ -1,58 +1,91 @@
-import React from 'react';
-import { Form, Segment, Message, Button } from 'semantic-ui-react'
-import { Field, reduxForm } from 'redux-form'
+import React from "react";
+import movies from "../../apis/movies";
+import { Form, Segment, Message, Button } from "semantic-ui-react";
 
 class StreamForm extends React.Component {
+  state = {
+    title: "",
+    validationErrors: "",
+    submissionError: "",
+    success: ""
+  };
 
-    options = [
-        { key: 'en', text: 'English', value: 'en-EN' },
-        { key: 'pl', text: 'Polski', value: 'pl-PL' },
-    ]
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value });
+    this.validate(value);
+  };
 
-    renderError({ error, touched }) {
-        if (touched && error) {
-            return <Message warning list={[error]} />
-        }
-    }
+  handleSubmit = e => {
+    e.preventDefault();
+    const title = this.state.title;
+    const self = this;
 
-    renderInput = ({ input, label, meta }) => {
-        return (
-            <div>
-                <Form.Input
-                    {...input}
-                    action={<Button color="teal" labelPosition="right" icon="add" content="Dodaj" disabled={!meta.valid} />}
-                    placeholder={label}
-                    fluid />
-                {this.renderError(meta)}
-            </div>
-        );
-    }
-
-    onSubmit = formValues => {
-        this.props.onSubmit(formValues);
-    };
-
-    render() {
-        return (
-            <Segment textAlign="center">
-                <Form warning onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                    <Field name="title" component={this.renderInput} label="Dodaj nowy film...." />
-                </Form>
-            </Segment>
+    movies
+      .post("/movies", { title })
+      .then(() =>
+        self.setState(
+          this.setState({
+            title: "",
+            validationErrors: "",
+            submissionError: "",
+            success: "Movie Added"
+          }),
+          () => window.location.reload()
         )
-    }
+      )
+      .catch(function(error) {
+        if ([409, 404].includes(error.response.status)) {
+          self.setState({
+            success: "",
+            submissionError: error.response.data.message
+          });
+        }
+      });
+  };
+
+  validate = formValue => {
+    this.setState({
+      validationErrors: formValue ? "" : "Tytuł filmu jest wymagany"
+    });
+  };
+
+  render() {
+    const { title, validationErrors, submissionError, success } = this.state;
+
+    return (
+      <Segment textAlign="center">
+        <Form warning error success onSubmit={this.handleSubmit}>
+          <Form.Input
+            onChange={this.handleChange}
+            value={title}
+            action={
+              <Button
+                color="teal"
+                labelPosition="right"
+                icon="add"
+                content="Dodaj"
+                disabled={title.length === 0}
+              />
+            }
+            placeholder="Dodaj nowy film...."
+            name="title"
+            fluid
+          />
+          <Message
+            warning
+            list={[validationErrors]}
+            hidden={validationErrors.length === 0}
+          />
+          <Message
+            error
+            content={submissionError}
+            hidden={submissionError.length === 0}
+          />
+          <Message success content={success} hidden={success.length === 0} />
+        </Form>
+      </Segment>
+    );
+  }
 }
 
-const validate = formValues => {
-    const errors = {};
-    if (!formValues.title) {
-        errors.title = 'Tytuł filmu jest wymagany';
-    }
-    return errors;
-};
-
-
-export default reduxForm({
-    form: 'addMovieForm',
-    validate
-})(StreamForm);
+export default StreamForm;

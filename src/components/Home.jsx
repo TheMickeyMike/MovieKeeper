@@ -1,7 +1,5 @@
 import React from 'react';
 import MovieList from './movies/MovieList'
-import { connect } from 'react-redux';
-import { addMovie } from '../actions';
 import MovieAdd from './movies/MovieAdd';
 
 class Home extends React.Component {
@@ -12,14 +10,10 @@ class Home extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <MovieAdd onSubmit={this.onSubmit} />
+                <MovieAdd />
                 <MovieList watched={false} />
             </React.Fragment>
         );
     }
 }
-
-export default connect(
-    null,
-    { addMovie }
-)(Home);
+export default Home;

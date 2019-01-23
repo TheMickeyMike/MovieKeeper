@@ -56,7 +56,8 @@ def movies():
 def newMovie():
     data = request.json
     print(data)
-    resp = Response(status=201, mimetype='application/json')
+    err = {"status":404,"error":"Not Found","message":"Movie with criterium='qwertyuiop' not found"}
+    resp = Response(json.dumps(err),status=201, mimetype='application/json')
     return resp
 
 @app.route('/movies/<movie_id>', methods=['GET'])
