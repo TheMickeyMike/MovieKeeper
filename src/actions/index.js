@@ -10,6 +10,7 @@ import {
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_REQUEST,
   ADD_MOVIE_FAILURE,
+  ADD_MOVIE_CLEAR_STATE,
   REFRESH_MOVIES_REQUEST,
   REFRESH_MOVIES_SUCCESS,
   REFRESH_MOVIES_FAILURE,
@@ -79,3 +80,7 @@ export const refreshMovies = () => async dispatch => {
     dispatch({ type: REFRESH_MOVIES_FAILURE, payload: error.response.data });
   }
 };
+
+export const cleanForm = () => async dispatch => {
+  dispatch({ type: ADD_MOVIE_CLEAR_STATE });
+}; 

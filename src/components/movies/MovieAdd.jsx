@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { addMovie } from '../../actions';
+import { addMovie, cleanForm } from '../../actions';
 import { Form, Segment, Message, Button } from "semantic-ui-react";
 
 class StreamForm extends React.Component {
@@ -8,6 +8,10 @@ class StreamForm extends React.Component {
     title: "",
     validationErrors: ""
   };
+
+  componentWillUnmount() {
+    this.props.cleanForm()
+  }
 
   handleUserInput = (e) => {
     const { name, value } = e.target;
@@ -77,5 +81,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { addMovie }
+  { addMovie, cleanForm }
 )(StreamForm);

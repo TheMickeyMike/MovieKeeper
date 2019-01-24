@@ -3,12 +3,12 @@ import { Menu, Button } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { refreshMovies } from '../actions';
+import { withRouter } from 'react-router-dom'
 import logo from '../logo.svg';
 
 class Header extends Component {
     render() {
         const { refreshMovies, isRefreshing } = this.props;
-        console.log(isRefreshing)
         return (
             <Menu>
                 <Menu.Item as={Link} to="/">
@@ -30,17 +30,14 @@ class Header extends Component {
     }
 }
 
-// export default Header;
-
 const mapStateToProps = (state) => {
     return {
         isRefreshing: state.freshener,
-        //   refreshError: state.movieAddForm.error,
     };
 };
 
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     { refreshMovies }
-)(Header);
+)(Header));

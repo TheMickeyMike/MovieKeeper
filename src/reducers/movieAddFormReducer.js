@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_MOVIE_REQUEST, ADD_MOVIE_SUCCESS, ADD_MOVIE_FAILURE } from '../actions/types';
+import { ADD_MOVIE_REQUEST, ADD_MOVIE_SUCCESS, ADD_MOVIE_FAILURE, ADD_MOVIE_CLEAR_STATE } from '../actions/types';
 
 
 const isFetching = (state = false, action) => {
@@ -21,6 +21,8 @@ const error = (state = '', action) => {
         case ADD_MOVIE_FAILURE:
             return action.payload.message;
         case ADD_MOVIE_SUCCESS:
+            return '';
+        case ADD_MOVIE_CLEAR_STATE:
             return '';
         default:
             return state;
