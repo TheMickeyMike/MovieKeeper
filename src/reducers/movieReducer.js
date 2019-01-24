@@ -1,5 +1,12 @@
 import _ from 'lodash';
-import { FETCH_MOVIES, FETCH_MOVIE, DELETE_MOVIE, SEEN_MOVIE, ADD_MOVIE_SUCCESS } from '../actions/types';
+import {
+    FETCH_MOVIES,
+    FETCH_MOVIE,
+    DELETE_MOVIE,
+    SEEN_MOVIE,
+    ADD_MOVIE_SUCCESS,
+    REFRESH_MOVIES_SUCCESS,
+} from '../actions/types';
 
 export default (state = {}, action) => {
     switch (action.type) {
@@ -13,6 +20,8 @@ export default (state = {}, action) => {
             return { ...state, [action.payload.id]: action.payload }
         case ADD_MOVIE_SUCCESS:
             return { ...state, [action.payload.id]: action.payload }
+        case REFRESH_MOVIES_SUCCESS:
+            return { ...state, ..._.mapKeys(action.payload, 'id') };
         default:
             return state;
     }
