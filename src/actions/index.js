@@ -6,7 +6,10 @@ import {
   FETCH_CREDIT,
   FETCH_TRAILER,
   DELETE_MOVIE,
-  SEEN_MOVIE
+  SEEN_MOVIE,
+  ADD_MOVIE_SUCCESS,
+  ADD_MOVIE_REQUEST,
+  ADD_MOVIE_FAILURE,
 } from "./types";
 
 export const fetchMovies = watched => async dispatch => {
@@ -21,6 +24,17 @@ export const fetchMovie = id => async dispatch => {
   dispatch({ type: FETCH_MOVIE, payload: response.data });
 };
 
+export const addMovie = formValues => async dispatch => {
+  dispatch({ type: ADD_MOVIE_REQUEST });
+  try {
+    const response = await movies.post('/movies', { ...formValues });
+    dispatch({ type: ADD_MOVIE_SUCCESS, payload: response.data });
+  } catch (error) {
+    if ([409, 404].includes(error.response.status)) {
+      dispatch({ type: ADD_MOVIE_FAILURE, payload: error.response.data });
+    }
+  }
+}
 export const fetchMovieCredit = id => async dispatch => {
   const response = await movies.get(`/movies/${id}/cast`);
 
