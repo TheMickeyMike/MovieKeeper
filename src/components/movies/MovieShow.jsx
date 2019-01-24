@@ -72,12 +72,12 @@ class MovieShow extends React.Component {
                         </Grid.Row>
                         <Divider hidden />
                         {watched ? null : (
-                        <Grid.Row>
-                            <CountingDownProgressBar
-                                release_date={release_date}
-                                release_date_digital={release_date_digital} />
-                        </Grid.Row>
-                         )}
+                            <Grid.Row>
+                                <CountingDownProgressBar
+                                    release_date={release_date}
+                                    release_date_digital={release_date_digital} />
+                            </Grid.Row>
+                        )}
                     </Grid.Column>
                     <Grid.Row>
                         <Grid.Column width={16} floated="right">

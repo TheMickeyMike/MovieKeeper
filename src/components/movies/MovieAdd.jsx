@@ -19,6 +19,7 @@ class StreamForm extends React.Component {
     e.preventDefault();
     const { title } = this.state
     this.props.addMovie({ title });
+    this.setState({ title: '' })
   }
 
   validate = formValue => {

@@ -22,8 +22,9 @@ class MovieList extends React.Component {
     }
 };
 
+
 const mapStateToProps = state => {
-    return { movies: Object.values(state.movies) };
+    return { movies: Object.values(_.orderBy(state.movies, ['title'], ['asc'])) };
 };
 
 export default connect(

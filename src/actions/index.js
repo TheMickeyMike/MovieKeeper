@@ -10,6 +10,9 @@ import {
   ADD_MOVIE_SUCCESS,
   ADD_MOVIE_REQUEST,
   ADD_MOVIE_FAILURE,
+  REFRESH_MOVIES_REQUEST,
+  REFRESH_MOVIES_SUCCESS,
+  REFRESH_MOVIES_FAILURE,
 } from "./types";
 
 export const fetchMovies = watched => async dispatch => {
@@ -65,4 +68,14 @@ export const movieIsSeen = (id, watched) => async dispatch => {
 
   dispatch({ type: SEEN_MOVIE, payload: response.data });
   history.push("/");
+};
+
+export const refreshMovies = () => async dispatch => {
+  dispatch({ type: REFRESH_MOVIES_REQUEST });
+  try {
+    const response = await movies.get(`/movies/refresh`);
+    dispatch({ type: REFRESH_MOVIES_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: REFRESH_MOVIES_FAILURE, payload: error.response.data });
+  }
 };
