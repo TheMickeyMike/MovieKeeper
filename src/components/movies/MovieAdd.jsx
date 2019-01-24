@@ -1,5 +1,4 @@
 import React from "react";
-import movies from "../../apis/movies";
 import { connect } from 'react-redux';
 import { addMovie } from '../../actions';
 import { Form, Segment, Message, Button } from "semantic-ui-react";
@@ -12,37 +11,9 @@ class StreamForm extends React.Component {
 
   handleUserInput = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
     this.validate(value);
+    this.setState({ [name]: value });
   };
-
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   const title = this.state.title;
-  //   const self = this;
-
-  //   movies
-  //     .post("/movies", { title })
-  //     .then(() =>
-  //       self.setState(
-  //         this.setState({
-  //           title: "",
-  //           validationErrors: "",
-  //           submissionError: "",
-  //           success: "Movie Added"
-  //         }),
-  //         () => window.location.reload()
-  //       )
-  //     )
-  //     .catch(function (error) {
-  //       if ([409, 404].includes(error.response.status)) {
-  //         self.setState({
-  //           success: "",
-  //           submissionError: error.response.data.message
-  //         });
-  //       }
-  //     });
-  // };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -89,17 +60,13 @@ class StreamForm extends React.Component {
             content={submitError}
             hidden={submitError.length === 0}
           />
-          {/* <Message success content={success} hidden={success.length === 0} /> */}
         </Form>
       </Segment>
     );
   }
 }
 
-// export default StreamForm;
-
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     isFetching: state.movieAddForm.isFetching,
     submitError: state.movieAddForm.error,
