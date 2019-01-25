@@ -42,17 +42,23 @@ export const ReleaseDate = ({ releaseDate, as = 'h4' }) => {
 
 
 export const CountingDownProgressBar = ({ release_date, release_date_digital }) => {
-    const remains = moment.duration(moment(release_date_digital).diff(moment())).humanize()
+    const remains = moment.duration(moment(release_date_digital).diff(moment()))
 
     if (!release_date_digital) {
         return <Segment secondary>Data pierwszego wydania jeszcze nie została ujawniona</Segment>
     }
-
+    if (remains <= 0) {
+        return (
+            <Segment color="green">
+                <Header as="h5" content="Ten film już jest dostępny!" />
+            </Segment>
+        )
+    }
     return (
         <Progress
             percent={ProgressCalculator(release_date, release_date_digital)}
             size='small'
-            label={`Do pierwszego wydania pozostało: ${remains <= 0 ? 0 : remains} (${moment(release_date_digital).format('LL')})`}
+            label={`Do pierwszego wydania pozostało: ${remains.humanize()} (${moment(release_date_digital).format('LL')})`}
             indicating />
     )
 }

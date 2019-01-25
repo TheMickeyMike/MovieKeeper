@@ -35,7 +35,7 @@ export const addMovie = formValues => async dispatch => {
     const response = await movies.post('/movies', { ...formValues });
     dispatch({ type: ADD_MOVIE_SUCCESS, payload: response.data });
   } catch (error) {
-    if ([409, 404].includes(error.response.status)) {
+    if ([409, 404, 429].includes(error.response.status)) {
       dispatch({ type: ADD_MOVIE_FAILURE, payload: error.response.data });
     }
   }
