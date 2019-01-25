@@ -1,3 +1,4 @@
+export const FILTER_MOVIES = 'FILTER_MOVIES';
 export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 export const FETCH_CREDIT = 'FETCH_CREDIT';

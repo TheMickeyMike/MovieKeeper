@@ -11,9 +11,16 @@ class MovieList extends React.Component {
     }
 
     renderList() {
-        return _.filter(this.props.movies, { watched: this.props.watched }).map(movie => {
-            return <MovieItem key={movie.id} movie={movie} />;
-        })
+        return _.filter(this.props.movies, { watched: this.props.watched })
+            .filter(
+                (movie) => {
+                    let movieTitle = movie.title.toLowerCase()
+                    return movieTitle.indexOf(
+                        this.props.filterTerm.toLowerCase()) !== -1
+                }
+            ).map(movie => {
+                return <MovieItem key={movie.id} movie={movie} />;
+            })
     }
 
     render() {
@@ -24,7 +31,10 @@ class MovieList extends React.Component {
 
 
 const mapStateToProps = state => {
-    return { movies: Object.values(_.orderBy(state.movies, ['creation_date'], ['desc'])) };
+    return {
+        movies: Object.values(_.orderBy(state.movies, ['creation_date'], ['desc'])),
+        filterTerm: state.movieFilter,
+    };
 };
 
 export default connect(

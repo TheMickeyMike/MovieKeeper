@@ -1,6 +1,7 @@
 import movies from "../apis/movies";
 import history from "../history";
 import {
+  FILTER_MOVIES,
   FETCH_MOVIES,
   FETCH_MOVIE,
   FETCH_CREDIT,
@@ -83,4 +84,8 @@ export const refreshMovies = () => async dispatch => {
 
 export const cleanForm = () => async dispatch => {
   dispatch({ type: ADD_MOVIE_CLEAR_STATE });
+};
+
+export const filterMovies = term => async dispatch => {
+  dispatch({ type: FILTER_MOVIES, payload: term });
 }; 
