@@ -50,7 +50,7 @@ export const CountingDownProgressBar = ({ release_date, release_date_digital }) 
     if (remains <= 0) {
         return (
             <Segment color="green">
-                <Header as="h5" content="Ten film już jest dostępny!" />
+                <Header as="h5" textAlign='center' content="Ten film już jest dostępny!" />
             </Segment>
         )
     }

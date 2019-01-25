@@ -3,7 +3,7 @@ import { Menu, Button, Input } from 'semantic-ui-react'
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { refreshMovies, filterMovies } from '../actions';
-import { withRouter } from 'react-router-dom'
+import { withRouter, matchPath } from 'react-router-dom'
 import logo from '../logo.svg';
 
 class Header extends Component {
@@ -15,6 +15,7 @@ class Header extends Component {
 
     render() {
         const { refreshMovies, isRefreshing } = this.props;
+        const searchDeactivated = !!matchPath(this.props.location.pathname, { path: '/movies/:id', exact: true })
         return (
             <Menu>
                 <Menu.Item as={Link} to="/">
@@ -25,6 +26,7 @@ class Header extends Component {
                 <Menu.Menu position='right'>
                     <Menu.Item >
                         <Input
+                            disabled={searchDeactivated}
                             onChange={this.filterMovies}
                             icon='search'
                             placeholder='Search...'
