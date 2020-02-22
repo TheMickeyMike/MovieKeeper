@@ -96,9 +96,9 @@ class MovieShow extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    let movieId = ownProps.match.params.id;
-    for(movieId in state.movies) {
-        if(state.movies.hasOwnProperty(movieId)) {
+    let movieId = ownProps.match.params.id.trim();
+    for(const id in state.movies) {
+        if(state.movies.hasOwnProperty(id) && id === movieId) {
             return { movie: state.movies[movieId] };
         }
     }
