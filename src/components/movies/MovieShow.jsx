@@ -96,7 +96,8 @@ class MovieShow extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    return { movie: state.movies[parseInt(ownProps.match.params.id)] };
+    let movieId = ownProps.match.params.id.trim();
+    return { movie: state.movies[movieId] };
 };
 
 
